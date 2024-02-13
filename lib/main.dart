@@ -49,6 +49,7 @@ class _TabataTimerState extends State<TabataTimer> {
   }
 
   Future<void> startTimer() async {
+    await musica.play(UrlSource(potente));
     _timer = Timer.periodic(Duration(seconds: 1), (timer) async {
       if (_secondsLeft > 0) {
         setState(() {
@@ -78,7 +79,8 @@ class _TabataTimerState extends State<TabataTimer> {
     });
   }
 
-  void resetTimer() {
+  Future<void> resetTimer() async {
+    await musica.stop();
     _timer.cancel();
     setState(() {
       _currentCycle = 1;
@@ -109,7 +111,7 @@ class _TabataTimerState extends State<TabataTimer> {
           SizedBox(height: 10),
           _secondsLeft >= 0
               ? Text(
-                  '$_secondsLeft seconds',
+                  '$_secondsLeft segons',
                   style: TextStyle(fontSize: 24, color: Colors.white),
                 )
               : Container(),
