@@ -58,17 +58,17 @@ class _TabataTimerState extends State<TabataTimer> {
         _timerController.add(_currentCycle);
 
         if (_isFirstTimer) {
-          //musica.stop();
+          musica.stop();
           _secondsLeft = 4;
-          //await musica.play(UrlSource(flojo));
+          await musica.play(UrlSource(flojo));
           _isFirstTimer = false;
         } else {
           _currentCycle++;
 
           if (_currentCycle <= _totalCycles) {
-            //  musica.stop();
+            musica.stop();
             _secondsLeft = 5;
-            //await musica.play(UrlSource(potente));
+            await musica.play(UrlSource(potente));
             _isFirstTimer = true;
           } else {
             resetTimer();
